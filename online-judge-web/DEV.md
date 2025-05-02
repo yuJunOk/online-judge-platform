@@ -53,6 +53,8 @@ createApp(App).use(ArcoVue).use(store).mount("#app");
 
 3. 安装组件库
 
+官网：[Arco Design Vue](https://arco.design/vue/docs/start)
+
 ```
 npm install --save-dev @arco-design/web-vue
 ```
