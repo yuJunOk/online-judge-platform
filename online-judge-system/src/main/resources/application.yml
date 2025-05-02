@@ -48,7 +48,7 @@ springdoc:
   group-configs:
     - group: 'default'   # API分组名称
       paths-to-match: '/**'  # 匹配所有路径
-      packages-to-scan: com.example.mps.controller  # 扫描的包，用于自动发现API
+      packages-to-scan: com.example.ojs.controller  # 扫描的包，用于自动发现API
 
 # knife4j的增强配置，不需要增强可以不配（详细版见下小节）
 knife4j:
