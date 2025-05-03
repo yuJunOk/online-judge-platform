@@ -70,21 +70,21 @@ public class QuestionSubmitVo implements Serializable {
     /**
      * 对应题目信息
      */
-    private QuestionVo questionVO;
+    private QuestionVo questionVo;
 
     /**
      * 包装类转对象
      *
-     * @param questionSubmitVO
+     * @param questionSubmitVo
      * @return
      */
-    public static QuestionSubmitDo voToObj(QuestionSubmitVo questionSubmitVO) {
-        if (questionSubmitVO == null) {
+    public static QuestionSubmitDo voToObj(QuestionSubmitVo questionSubmitVo) {
+        if (questionSubmitVo == null) {
             return null;
         }
         QuestionSubmitDo questionSubmit = new QuestionSubmitDo();
-        BeanUtils.copyProperties(questionSubmitVO, questionSubmit);
-        JudgeConfigDto judgeInfoObj = questionSubmitVO.getJudgeInfo();
+        BeanUtils.copyProperties(questionSubmitVo, questionSubmit);
+        JudgeConfigDto judgeInfoObj = questionSubmitVo.getJudgeInfo();
         if (judgeInfoObj != null) {
             questionSubmit.setJudgeInfo(JSONUtil.toJsonStr(judgeInfoObj));
         }
@@ -101,11 +101,11 @@ public class QuestionSubmitVo implements Serializable {
         if (questionSubmit == null) {
             return null;
         }
-        QuestionSubmitVo questionSubmitVO = new QuestionSubmitVo();
-        BeanUtils.copyProperties(questionSubmit, questionSubmitVO);
+        QuestionSubmitVo questionSubmitVo = new QuestionSubmitVo();
+        BeanUtils.copyProperties(questionSubmit, questionSubmitVo);
         String judgeInfoStr = questionSubmit.getJudgeInfo();
-        questionSubmitVO.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeConfigDto.class));
-        return questionSubmitVO;
+        questionSubmitVo.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeConfigDto.class));
+        return questionSubmitVo;
     }
 
     @Serial
