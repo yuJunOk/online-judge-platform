@@ -5,12 +5,12 @@
 import type { UserVo } from './UserVo';
 export type IPageUserVo = {
     size?: number;
+    current?: number;
+    records?: Array<UserVo>;
+    total?: number;
     /**
      * @deprecated
      */
     pages?: number;
-    current?: number;
-    records?: Array<UserVo>;
-    total?: number;
 };
 

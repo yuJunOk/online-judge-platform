@@ -5,6 +5,8 @@
 export type UserQueryPageDto = {
     current?: number;
     pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
     id?: number;
     userName?: string;
     loginName?: string;
