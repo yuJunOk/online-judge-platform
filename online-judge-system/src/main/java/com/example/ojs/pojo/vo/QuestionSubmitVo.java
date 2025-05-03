@@ -16,7 +16,7 @@ import java.util.Date;
  * @TableName question
  */
 @Data
-public class QuestionSubmitVO implements Serializable {
+public class QuestionSubmitVo implements Serializable {
     /**
      * id
      */
@@ -65,12 +65,12 @@ public class QuestionSubmitVO implements Serializable {
     /**
      * 提交用户信息
      */
-    private UserVo userVO;
+    private UserVo userVo;
 
     /**
      * 对应题目信息
      */
-    private QuestionVO questionVO;
+    private QuestionVo questionVO;
 
     /**
      * 包装类转对象
@@ -78,7 +78,7 @@ public class QuestionSubmitVO implements Serializable {
      * @param questionSubmitVO
      * @return
      */
-    public static QuestionSubmitDo voToObj(QuestionSubmitVO questionSubmitVO) {
+    public static QuestionSubmitDo voToObj(QuestionSubmitVo questionSubmitVO) {
         if (questionSubmitVO == null) {
             return null;
         }
@@ -97,11 +97,11 @@ public class QuestionSubmitVO implements Serializable {
      * @param questionSubmit
      * @return
      */
-    public static QuestionSubmitVO objToVo(QuestionSubmitDo questionSubmit) {
+    public static QuestionSubmitVo objToVo(QuestionSubmitDo questionSubmit) {
         if (questionSubmit == null) {
             return null;
         }
-        QuestionSubmitVO questionSubmitVO = new QuestionSubmitVO();
+        QuestionSubmitVo questionSubmitVO = new QuestionSubmitVo();
         BeanUtils.copyProperties(questionSubmit, questionSubmitVO);
         String judgeInfoStr = questionSubmit.getJudgeInfo();
         questionSubmitVO.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeConfigDto.class));

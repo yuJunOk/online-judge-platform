@@ -16,7 +16,7 @@ import java.util.List;
  * @TableName question
  */
 @Data
-public class QuestionVO implements Serializable {
+public class QuestionVo implements Serializable {
     /**
      * id
      */
@@ -80,7 +80,7 @@ public class QuestionVO implements Serializable {
     /**
      * 创建题目人的信息
      */
-    private UserVo userVO;
+    private UserVo userVo;
 
     /**
      * 包装类转对象
@@ -88,7 +88,7 @@ public class QuestionVO implements Serializable {
      * @param questionVO
      * @return
      */
-    public static QuestionDo voToObj(QuestionVO questionVO) {
+    public static QuestionDo voToObj(QuestionVo questionVO) {
         if (questionVO == null) {
             return null;
         }
@@ -111,11 +111,11 @@ public class QuestionVO implements Serializable {
      * @param question
      * @return
      */
-    public static QuestionVO objToVo(QuestionDo question) {
+    public static QuestionVo objToVo(QuestionDo question) {
         if (question == null) {
             return null;
         }
-        QuestionVO questionVO = new QuestionVO();
+        QuestionVo questionVO = new QuestionVo();
         BeanUtils.copyProperties(question, questionVO);
         List<String> tagList = JSONUtil.toList(question.getTags(), String.class);
         questionVO.setTags(tagList);
