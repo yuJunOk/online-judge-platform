@@ -62,4 +62,25 @@ public interface UserService extends IService<UserDo> {
      * @return
      */
     boolean addUser(UserDo userDo);
+
+    /**
+     * 获取当前登录用户信息
+     * @param request
+     * @return
+     */
+    UserVo getCurrentUser(HttpServletRequest request);
+
+    /**
+     * 获取当前登录用户信息 （允许未登录）
+     * @param request
+     * @return
+     */
+    UserVo getCurrentUserPermitNull(HttpServletRequest request);
+
+    /**
+     * 是否为管理员
+     * @param request
+     * @return
+     */
+    boolean isAdmin(HttpServletRequest request);
 }

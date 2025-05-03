@@ -1,7 +1,14 @@
 package com.example.ojs.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.ojs.pojo.domain.QuestionSubmitDo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.ojs.pojo.dto.questionsubmit.QuestionSubmitAddDto;
+import com.example.ojs.pojo.dto.questionsubmit.QuestionSubmitQueryPageDto;
+import com.example.ojs.pojo.vo.QuestionSubmitVo;
+import com.example.ojs.pojo.vo.UserVo;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
 * @author pengYuJun
@@ -10,4 +17,38 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface QuestionSubmitService extends IService<QuestionSubmitDo> {
 
+    /**
+     * 题目提交
+     *
+     * @param questionSubmitAddDto 题目提交信息
+     * @param request
+     * @return
+     */
+    long doQuestionSubmit(QuestionSubmitAddDto questionSubmitAddDto, HttpServletRequest request);
+
+    /**
+     * 获取查询条件
+     *
+     * @param questionSubmitQueryPageDto
+     * @return
+     */
+    QueryWrapper<QuestionSubmitDo> getQueryWrapper(QuestionSubmitQueryPageDto questionSubmitQueryPageDto);
+
+    /**
+     * 获取题目封装
+     *
+     * @param questionSubmit
+     * @param request
+     * @return
+     */
+    QuestionSubmitVo getQuestionSubmitVo(QuestionSubmitDo questionSubmit, HttpServletRequest request);
+
+    /**
+     * 分页获取题目封装
+     *
+     * @param questionSubmitPage
+     * @param loginUser
+     * @return
+     */
+    Page<QuestionSubmitVo> getQuestionSubmitVoPage(Page<QuestionSubmitDo> questionSubmitPage, HttpServletRequest request);
 }

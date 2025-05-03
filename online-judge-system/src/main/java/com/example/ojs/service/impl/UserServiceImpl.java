@@ -8,8 +8,6 @@ import com.example.ojs.common.ResponseCode;
 import com.example.ojs.exception.BusinessException;
 import com.example.ojs.mapper.UserMapper;
 import com.example.ojs.pojo.domain.UserDo;
-import com.example.ojs.pojo.dto.PageDto;
-import com.example.ojs.pojo.dto.user.UserQueryDto;
 import com.example.ojs.pojo.dto.user.UserQueryPageDto;
 import com.example.ojs.pojo.vo.UserVo;
 import com.example.ojs.service.UserService;
@@ -211,6 +209,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDo>
         userDo.setLoginPwd(md5Pwd);
         // 3.插入
         return this.save(userDo);
+    }
+
+    @Override
+    public UserVo getCurrentUser(HttpServletRequest request) {
+        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        UserVo currentUser = (UserVo) userObj;
+        // 再查询，用户数据是否有效
+        // todo: 校验用户是否合法
+        try{
+            Long userId = currentUser.getId();
+            UserDo userDo = this.getById(userId);
+            UserVo userVo = new UserVo();
+            BeanUtils.copyProperties(userDo, userVo);
+            return userVo;
+        }catch (Exception e){
+            throw new BusinessException(ResponseCode.UNAUTHORIZED);
+        }
+    }
+
+    @Override
+    public UserVo getCurrentUserPermitNull(HttpServletRequest request) {
+        Object userObj = request.getSession().getAttribute(USER_LOGIN_STATE);
+        UserVo currentUser = (UserVo) userObj;
+        // 再查询，用户数据是否有效
+        // todo: 校验用户是否合法
+        if (currentUser != null && currentUser.getId() != null){
+            Long userId = currentUser.getId();
+            UserDo userDo = this.getById(userId);
+            UserVo userVo = new UserVo();
+            BeanUtils.copyProperties(userDo, userVo);
+            return userVo;
+        }else {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean isAdmin(HttpServletRequest request) {
+        //
+        UserVo user = (UserVo) request.getSession().getAttribute(USER_LOGIN_STATE);
+        return user != null && user.getUserRole() == ADMIN_ROLE;
     }
 }
 
