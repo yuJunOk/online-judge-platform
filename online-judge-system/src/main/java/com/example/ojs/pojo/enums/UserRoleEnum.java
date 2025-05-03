@@ -1,4 +1,4 @@
-package com.example.ojs.pojo.dto.enums;
+package com.example.ojs.pojo.enums;
 
 import org.apache.commons.lang3.ObjectUtils;
 
@@ -6,22 +6,20 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author pengYuJun
  */
-public enum QuestionSubmitStatusEnum {
+public enum UserRoleEnum {
 
-    // 0 - 待判题、1 - 判题中、2 - 成功、3 - 失败
-    WAITING("等待中", 0),
-    RUNNING("判题中", 1),
-    SUCCEED("成功", 2),
-    FAILED("失败", 3);
+    //
+    USER("用户", 0),
+    ADMIN("管理员", 1),
+    BAN("被封号", 2);
 
     private final String text;
 
     private final Integer value;
 
-    QuestionSubmitStatusEnum(String text, Integer value) {
+    UserRoleEnum(String text, int value) {
         this.text = text;
         this.value = value;
     }
@@ -41,11 +39,11 @@ public enum QuestionSubmitStatusEnum {
      * @param value
      * @return
      */
-    public static QuestionSubmitStatusEnum getEnumByValue(Integer value) {
+    public static UserRoleEnum getEnumByValue(String value) {
         if (ObjectUtils.isEmpty(value)) {
             return null;
         }
-        for (QuestionSubmitStatusEnum anEnum : QuestionSubmitStatusEnum.values()) {
+        for (UserRoleEnum anEnum : UserRoleEnum.values()) {
             if (anEnum.value.equals(value)) {
                 return anEnum;
             }
