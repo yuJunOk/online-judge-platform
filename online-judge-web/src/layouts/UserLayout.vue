@@ -4,15 +4,15 @@
       <a-layout-header class="header">
         <a-space>
           <img src="../assets/oj-logo.svg" class="logo" alt="logo" />
-          <div>鱼 OJ</div>
+          <div>Online Judge</div>
         </a-space>
       </a-layout-header>
       <a-layout-content class="content">
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a href="https://yupi.icu" target="_blank">
-          编程导航知识星球 by 程序员鱼皮
+        <a href="https://gitee.com/yuJunOk" target="_blank">
+          yuJunOk's Gitee
         </a>
       </a-layout-footer>
     </a-layout>

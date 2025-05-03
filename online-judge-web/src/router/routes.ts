@@ -5,6 +5,7 @@ import NoAuthView from "@/views/NoAuthView.vue";
 import UserLayout from "@/layouts/UserLayout.vue";
 import UserLoginView from "@/views/user/UserLoginView.vue";
 import UserRegisterView from "@/views/user/UserRegisterView.vue";
+import ACCESS_ENUM from "@/access/accessEnum";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,9 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "浏览题目",
     component: HomeView,
+    meta: {
+      access: ACCESS_ENUM.USER,
+    },
   },
   {
     path: "/noAuth",
@@ -45,7 +49,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "管理员可见",
     component: AdminView,
     meta: {
-      access: 1,
+      access: ACCESS_ENUM.ADMIN,
     },
   },
   {

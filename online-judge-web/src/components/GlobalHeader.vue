@@ -35,6 +35,7 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/checkAccess";
+import accessEnum from "@/access/accessEnum";
 
 const store = useStore();
 
@@ -47,12 +48,10 @@ const visibleRoutes = computed(() => {
       return false;
     }
     // 根据权限过滤菜单
-    if (
-      !checkAccess(store.state.user.loginUser, item?.meta?.access as number)
-    ) {
-      return false;
-    }
-    return true;
+    return checkAccess(
+      store.state.user.loginUser,
+      item?.meta?.access as number
+    );
   });
 });
 
@@ -63,13 +62,6 @@ router.afterEach((to, from, failure) => {
 
 // 默认菜单选中
 const selectedKeys = ref(["/"]);
-
-// 远程请求获取登录信息
-setTimeout(() => {
-  store.dispatch("user/getLoginUser", {
-    userName: "管理员",
-  });
-}, 3000);
 
 // 点击跳转
 const doMenuClick = (key: string) => {

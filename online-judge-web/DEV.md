@@ -80,3 +80,18 @@ createApp(App).use(ArcoVue).use(store).use(router).mount("#app");
 npm install axios
 ```
 
+5. 自动生成后端接口请求代码
+
+代码仓库：[github.com](https://github.com/ferdikoomen/openapi-typescript-codegen)
+
+```
+npm install openapi-typescript-codegen --save-dev
+```
+
+下载成功后执行
+
+```
+openapi --input http://localhost:8080/api/v3/api-docs --output ./generated --client axios
+```
+
+记着看生成文件夹下core/OpenAPI.ts的WITH_CREDENTIALS是否为true，为true能保证请求带cookie。

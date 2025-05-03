@@ -1,5 +1,7 @@
 // initial state
 import { StoreOptions } from "vuex";
+import { UserControllerService } from "../../generated";
+import ACCESS_ENUM from "@/access/accessEnum";
 
 export default {
   namespaced: true,
@@ -11,8 +13,16 @@ export default {
   }),
   // 执行异步操作，并且通过commit触发 mutation 的更改 (actions 调用 mutation)
   actions: {
-    getLoginUser({ commit, state }, payload) {
-      commit("updateUser", { userName: payload.userName });
+    async getLoginUser({ commit, state }, payload) {
+      const res = await UserControllerService.getCurrentUser();
+      if (res.code === 23200) {
+        commit("updateUser", res.data);
+      } else {
+        commit("updateUser", {
+          ...state.loginUser,
+          userRole: ACCESS_ENUM.NOT_LOGIN,
+        });
+      }
     },
   },
   // 定义了对变量进行增删改(更新)的方法，尽量同步
