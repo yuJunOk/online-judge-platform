@@ -1,6 +1,7 @@
 package com.example.ojs.pojo.vo;
 
 import cn.hutool.json.JSONUtil;
+import com.example.ojs.judge.codesandbox.model.JudgeInfo;
 import com.example.ojs.pojo.domain.QuestionSubmitDo;
 import com.example.ojs.pojo.dto.question.JudgeConfigDto;
 import lombok.Data;
@@ -35,7 +36,7 @@ public class QuestionSubmitVo implements Serializable {
     /**
      * 判题信息
      */
-    private JudgeConfigDto judgeInfo;
+    private JudgeInfo judgeInfo;
 
     /**
      * 判题状态（0 - 待判题、1 - 判题中、2 - 成功、3 - 失败）
@@ -84,7 +85,7 @@ public class QuestionSubmitVo implements Serializable {
         }
         QuestionSubmitDo questionSubmit = new QuestionSubmitDo();
         BeanUtils.copyProperties(questionSubmitVo, questionSubmit);
-        JudgeConfigDto judgeInfoObj = questionSubmitVo.getJudgeInfo();
+        JudgeInfo judgeInfoObj = questionSubmitVo.getJudgeInfo();
         if (judgeInfoObj != null) {
             questionSubmit.setJudgeInfo(JSONUtil.toJsonStr(judgeInfoObj));
         }
@@ -104,7 +105,7 @@ public class QuestionSubmitVo implements Serializable {
         QuestionSubmitVo questionSubmitVo = new QuestionSubmitVo();
         BeanUtils.copyProperties(questionSubmit, questionSubmitVo);
         String judgeInfoStr = questionSubmit.getJudgeInfo();
-        questionSubmitVo.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeConfigDto.class));
+        questionSubmitVo.setJudgeInfo(JSONUtil.toBean(judgeInfoStr, JudgeInfo.class));
         return questionSubmitVo;
     }
 

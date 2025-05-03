@@ -24,7 +24,7 @@ public interface QuestionSubmitService extends IService<QuestionSubmitDo> {
      * @param request
      * @return
      */
-    long doQuestionSubmit(QuestionSubmitAddDto questionSubmitAddDto, HttpServletRequest request);
+    Long doQuestionSubmit(QuestionSubmitAddDto questionSubmitAddDto, HttpServletRequest request);
 
     /**
      * 获取查询条件

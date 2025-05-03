@@ -301,8 +301,7 @@ public class QuestionController {
         if (questionSubmitAddDto == null || questionSubmitAddDto.getQuestionId() <= 0) {
             throw new BusinessException(ResponseCode.PARAMS_ERROR);
         }
-        // 登录才能点赞
-        final UserVo loginUser = userService.getCurrentUser(request);
+        // 登录才能提交
         long questionSubmitId = questionSubmitService.doQuestionSubmit(questionSubmitAddDto, request);
         return ResponseEntity.success(questionSubmitId);
     }
